@@ -8,6 +8,7 @@
       <div class="col-1">
         <q-btn @click="counter ++" round icon="add"></q-btn>
       </div>
+      <q-btn @click="$router.push('/about')" label="about"></q-btn>
     </div>
   </q-page>
 </template>
