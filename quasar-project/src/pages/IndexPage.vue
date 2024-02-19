@@ -2,18 +2,19 @@
   <q-page padding>
     <div class="row q-gutter-md">
       <div class="col-1">
-        <q-btn @click="minus " round icon="remove"></q-btn>
+        <q-btn @click="counter> 0? counter --:'' " round icon="remove"></q-btn>
       </div>
-      <div class="col"><q-input v-model="props.counter" label="counter" inputclass="text-center" ></q-input></div>
+      <div class="col"><q-input v-model="counter" label="counter" inputclass="text-center" ></q-input></div>
       <div class="col-1">
-        <q-btn @click="plus" round icon="add"></q-btn>
+        <q-btn @click="counter ++" round icon="add"></q-btn>
       </div>
     </div>
   </q-page>
 </template>
 
 <script>
-import { reactive } from "vue";
+import { onMounted } from "vue";
+import { reactive,toRefs } from "vue";
 import { defineComponent } from "vue";
 
 export default defineComponent({
@@ -22,19 +23,20 @@ export default defineComponent({
     const props = reactive({
        counter:0
     })
-    function minus(){
-      if(props.counter>0){
-        props.counter --
-      }
-      
-    }
-    function plus(){
-      props.counter ++
-    }
+    onMounted(()=>{
+      alert('hi')
+    })
+    // function minus(){
+    //   props.counter > 0 ? props.counter -- :''
+        
+    // }
+    // function plus(){
+    //   props.counter ++
+    // }
     return{
-      props,
-      minus,
-      plus
+      ...toRefs(props)
+      // minus,
+      // plus
     }
   }
 });
