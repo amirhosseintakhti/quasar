@@ -21,11 +21,16 @@ import { defineComponent } from "vue";
 export default defineComponent({
   name: "IndexPage",
   setup(){
+    const myval = ref("hi")
+    console.log(myval.value + "seted up |" + new Date);
     const props = reactive({
        counter:0
     })
+    onBeforeMount(() =>{
+      console.log(myval.value + "before mount |" + new Date);
+    })
     onMounted(()=>{
-      alert('hi')
+      console.log(myval.value + "onMounted |" + new Date);
     })
     // function minus(){
     //   props.counter > 0 ? props.counter -- :''
