@@ -15,23 +15,21 @@
 
 <script>
 import { onMounted } from "vue";
-import { reactive,toRefs } from "vue";
+import { reactive,toRefs,ref } from "vue";
 import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "IndexPage",
   setup(){
-    const myval = ref("hi")
-    console.log(myval.value + "seted up |" + new Date);
+    const myVal = ref('hi')
+    console.log(myVal.value + "|seted up|" +new Date);
     const props = reactive({
        counter:0
-    })
-    onBeforeMount(() =>{
-      console.log(myval.value + "before mount |" + new Date);
-    })
+    });
+
     onMounted(()=>{
-      console.log(myval.value + "onMounted |" + new Date);
-    })
+      console.log(myVal.value + "|onMounted|" + new Date);
+    });
     // function minus(){
     //   props.counter > 0 ? props.counter -- :''
         
