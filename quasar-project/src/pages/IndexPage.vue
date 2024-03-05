@@ -1,47 +1,32 @@
 <template>
   <q-page padding>
-    <div class="row q-gutter-md">
-      <div class="col-1">
-        <q-btn @click="counter> 0? counter --:'' " round icon="remove"></q-btn>
+      <div v-for="(message, index) in messages" :key="'message-' + index">
+        {{ message.fullName }}|{{ message.email }}<br />
+        {{ message.topic }}<br />
+        {{ message.message }}
+        <hr />
       </div>
-      <div class="col"><q-input v-model="counter" label="counter" inputclass="text-center" ></q-input></div>
-      <div class="col-1">
-        <q-btn @click="counter ++" round icon="add"></q-btn>
-      </div>
-      <q-btn @click="$router.push('/about')" label="about"></q-btn>
-    </div>
   </q-page>
 </template>
 
 <script>
-import { onMounted } from "vue";
-import { reactive,toRefs,ref } from "vue";
-import { defineComponent } from "vue";
+import axios from "axios";
+import { ref, defineComponent } from "vue";
 
 export default defineComponent({
   name: "IndexPage",
-  setup(){
-    const myVal = ref('hi')
-    console.log(myVal.value + "|seted up|" +new Date);
-    const props = reactive({
-       counter:0
-    });
-
-    onMounted(()=>{
-      console.log(myVal.value + "|onMounted|" + new Date);
-    });
-    // function minus(){
-    //   props.counter > 0 ? props.counter -- :''
-        
-    // }
-    // function plus(){
-    //   props.counter ++
-    // }
-    return{
-      ...toRefs(props)
-      // minus,
-      // plus
+  setup() {
+    const messages = ref([]);
+    function fetchMessages() {
+      axios.get("http://localhost:8000/api/contact").then((r) => {
+        console.log(r.data);
+        messages.value = r.data.messages;
+      });
     }
-  }
+    fetchMessages();
+    return {
+      messages,
+    };
+  },
 });
 </script>

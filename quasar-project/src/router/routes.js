@@ -8,6 +8,13 @@ const routes = [
     ]
   },
   {
+    path: '/tamrin',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: '', component: () => import('pages/TamrinPage.vue') }
+    ]
+  },
+  {
     path: '/about',
     component: () => import('layouts/MainLayout.vue'),
     children: [
