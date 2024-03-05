@@ -1,16 +1,19 @@
 <template>
   <q-page padding>
-    <div>{{ message }}</div>
+    <q-input v-model="message" />
+  <h1>{{ message }}</h1>
   </q-page>
 </template>
 
 <script>
 export default {
  setup(){
-  const message = 'salam';
+  const props= reactive({
+    message:'salam'
+  });
 
   return{
-    message
+    ...torefs(props)
   }
  }
 }

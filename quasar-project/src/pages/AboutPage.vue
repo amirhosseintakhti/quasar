@@ -1,7 +1,8 @@
 <template>
   <q-page padding>
+    
   </q-page>
-</template> 
+</template>
 
 <script>
 export default {
